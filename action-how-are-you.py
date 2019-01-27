@@ -33,7 +33,7 @@ def color_callback(hermes, intent_message):
 def time_callback(hermes, intent_message):
     session_id = intent_message.session_id
     print("time")
-    city = str(intent_message.slots.city.first().value)
+    city = str(intent_message.slots.location.first().value)
     print(city)
     tzname = 'Europe/' + city
     time = datetime.datetime.now(pytz.timezone(tzname))
