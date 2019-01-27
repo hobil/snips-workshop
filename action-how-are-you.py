@@ -3,6 +3,7 @@
 from hermes_python.hermes import Hermes
 
 import datetime
+import pytz
 
 INTENT_HOW_ARE_YOU = "hobil:how_are_you"
 INTENT_COLOR = "hobil:color"
@@ -31,9 +32,15 @@ def color_callback(hermes, intent_message):
 
 def time_callback(hermes, intent_message):
     session_id = intent_message.session_id
-    time = datetime.datetime.now()
-    response = "It's " + str(time.hour) + " " + str(time.minute)
-    #response = "Yellow."
+    print("time")
+    city = str(intent_message.slots.city.first().value)
+    print(city)
+    tzname = 'Europe/' + city
+    time = datetime.datetime.now(pytz.timezone(tzname))
+    print("%s is in %s timezone" % (city, tzname))
+    print("Current time in %s is %s" % (city, time))
+    response = "It's " + str(time.hour) + " " + str(time.minute) + " in " + city
+    print(response)
     hermes.publish_end_session(session_id, response)
 
 
