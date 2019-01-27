@@ -3,7 +3,7 @@
 from hermes_python.hermes import Hermes
 
 INTENT_HOW_ARE_YOU = "hobil:how_are_you"
-INTENT_COLOR = ["hobil:color"]
+INTENT_COLOR = "hobil:color"
 
 
 def main():
@@ -17,7 +17,7 @@ def how_are_you_callback(hermes, intent_message):
     session_id = intent_message.session_id
     response = "Fine. Stop asking."
     hermes.publish_end_session(session_id, response)
-    #hermes.publish_continue_session(session_id, response, INTENT_COLOR)
+    # hermes.publish_continue_session(session_id, response, INTENT_COLOR)
 
 
 def color_callback(hermes, intent_message):
